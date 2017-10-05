@@ -6,7 +6,7 @@
 #
 Name     : tqdm
 Version  : 4.19.1
-Release  : 9
+Release  : 10
 URL      : https://pypi.debian.net/tqdm/tqdm-4.19.1.tar.gz
 Source0  : https://pypi.debian.net/tqdm/tqdm-4.19.1.tar.gz
 Source99 : https://pypi.debian.net/tqdm/tqdm-4.19.1.tar.gz.asc
@@ -74,7 +74,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507084881
+export SOURCE_DATE_EPOCH=1507180072
 python3 setup.py build -b py3
 
 %install
