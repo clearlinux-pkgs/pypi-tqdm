@@ -4,7 +4,7 @@
 #
 Name     : tqdm
 Version  : 4.19.2
-Release  : 11
+Release  : 12
 URL      : https://pypi.debian.net/tqdm/tqdm-4.19.2.tar.gz
 Source0  : https://pypi.debian.net/tqdm/tqdm-4.19.2.tar.gz
 Summary  : Fast, Extensible Progress Meter
