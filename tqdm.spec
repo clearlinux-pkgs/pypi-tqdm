@@ -19,7 +19,7 @@ Requires: tqdm-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pycodestyle
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
