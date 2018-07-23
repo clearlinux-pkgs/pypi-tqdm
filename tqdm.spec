@@ -5,21 +5,21 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.23.0
-Release  : 31
-URL      : https://pypi.python.org/packages/f3/18/3dbaeecc50255693492776ad869125b19842ca7933a4c9e5d076dee6c60a/tqdm-4.23.0.tar.gz
-Source0  : https://pypi.python.org/packages/f3/18/3dbaeecc50255693492776ad869125b19842ca7933a4c9e5d076dee6c60a/tqdm-4.23.0.tar.gz
-Source99 : https://pypi.python.org/packages/f3/18/3dbaeecc50255693492776ad869125b19842ca7933a4c9e5d076dee6c60a/tqdm-4.23.0.tar.gz.asc
+Version  : 4.23.4
+Release  : 32
+URL      : https://files.pythonhosted.org/packages/41/61/d36ff28878ca73bb3932dfa6bab36ff872e6dac18c9ace328879b1798279/tqdm-4.23.4.tar.gz
+Source0  : https://files.pythonhosted.org/packages/41/61/d36ff28878ca73bb3932dfa6bab36ff872e6dac18c9ace328879b1798279/tqdm-4.23.4.tar.gz
+Source99 : https://files.pythonhosted.org/packages/41/61/d36ff28878ca73bb3932dfa6bab36ff872e6dac18c9ace328879b1798279/tqdm-4.23.4.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
 Requires: tqdm-bin
 Requires: tqdm-python3
 Requires: tqdm-python
+BuildRequires : buildreq-distutils3
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pycodestyle
-
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
@@ -48,6 +48,14 @@ Group: Binaries
 bin components for the tqdm package.
 
 
+%package doc
+Summary: doc components for the tqdm package.
+Group: Documentation
+
+%description doc
+doc components for the tqdm package.
+
+
 %package python
 Summary: python components for the tqdm package.
 Group: Default
@@ -67,18 +75,20 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.23.0
+%setup -q -n tqdm-4.23.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523846311
+export SOURCE_DATE_EPOCH=1532310518
 python3 setup.py build -b py3
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/tqdm
+cp LICENCE %{buildroot}/usr/share/doc/tqdm/LICENCE
 python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -91,6 +101,10 @@ echo ----[ mark ]----
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/tqdm
+
+%files doc
+%defattr(0644,root,root,0755)
+%doc /usr/share/doc/tqdm/*
 
 %files python
 %defattr(-,root,root,-)
