@@ -6,7 +6,7 @@
 #
 Name     : tqdm
 Version  : 4.25.0
-Release  : 34
+Release  : 35
 URL      : https://files.pythonhosted.org/packages/48/9e/db8e0c2def12e8d3209ac1e23bfb630c6bbb9c9aa0a2ff000eda23ec1d8c/tqdm-4.25.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/48/9e/db8e0c2def12e8d3209ac1e23bfb630c6bbb9c9aa0a2ff000eda23ec1d8c/tqdm-4.25.0.tar.gz
 Source99 : https://files.pythonhosted.org/packages/48/9e/db8e0c2def12e8d3209ac1e23bfb630c6bbb9c9aa0a2ff000eda23ec1d8c/tqdm-4.25.0.tar.gz.asc
@@ -78,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1534773811
+export SOURCE_DATE_EPOCH=1534777406
 python3 setup.py build -b py3
 
 %install
