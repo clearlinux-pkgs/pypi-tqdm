@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.24.0
-Release  : 33
-URL      : https://files.pythonhosted.org/packages/92/cb/2b07b529284f324293a8919185cc4b15007f32a2aba64c93b0c1696a26f3/tqdm-4.24.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/92/cb/2b07b529284f324293a8919185cc4b15007f32a2aba64c93b0c1696a26f3/tqdm-4.24.0.tar.gz
-Source99 : https://files.pythonhosted.org/packages/92/cb/2b07b529284f324293a8919185cc4b15007f32a2aba64c93b0c1696a26f3/tqdm-4.24.0.tar.gz.asc
+Version  : 4.25.0
+Release  : 34
+URL      : https://files.pythonhosted.org/packages/48/9e/db8e0c2def12e8d3209ac1e23bfb630c6bbb9c9aa0a2ff000eda23ec1d8c/tqdm-4.25.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/48/9e/db8e0c2def12e8d3209ac1e23bfb630c6bbb9c9aa0a2ff000eda23ec1d8c/tqdm-4.25.0.tar.gz
+Source99 : https://files.pythonhosted.org/packages/48/9e/db8e0c2def12e8d3209ac1e23bfb630c6bbb9c9aa0a2ff000eda23ec1d8c/tqdm-4.25.0.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
@@ -17,11 +17,7 @@ Requires: tqdm-bin
 Requires: tqdm-python3
 Requires: tqdm-python
 BuildRequires : buildreq-distutils3
-BuildRequires : pbr
-BuildRequires : pip
 BuildRequires : pycodestyle
-BuildRequires : python3-dev
-BuildRequires : setuptools
 
 %description
 tqdm
@@ -35,7 +31,7 @@ tqdm
         
         
         ``tqdm`` means "progress" in Arabic (taqadum, ØªÙØ¯ÙÙ)
-        and an abbreviation for "I love you so much" in Spanish (te quiero demasiado).
+        and is an abbreviation for "I love you so much" in Spanish (te quiero demasiado).
         
         Instantly make your loops show a smart progress meter - just wrap any
         iterable with ``tqdm(iterable)``, and you're done!
@@ -75,14 +71,14 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.24.0
+%setup -q -n tqdm-4.25.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532658068
+export SOURCE_DATE_EPOCH=1534773811
 python3 setup.py build -b py3
 
 %install
