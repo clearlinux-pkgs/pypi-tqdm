@@ -5,17 +5,18 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.26.0
-Release  : 36
-URL      : https://files.pythonhosted.org/packages/5a/53/05ac96b04b6417d5d8d4638ac22e39b39a8c8e5e2a35cda5e8d2efa275c3/tqdm-4.26.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/5a/53/05ac96b04b6417d5d8d4638ac22e39b39a8c8e5e2a35cda5e8d2efa275c3/tqdm-4.26.0.tar.gz
-Source99 : https://files.pythonhosted.org/packages/5a/53/05ac96b04b6417d5d8d4638ac22e39b39a8c8e5e2a35cda5e8d2efa275c3/tqdm-4.26.0.tar.gz.asc
+Version  : 4.27.0
+Release  : 37
+URL      : https://files.pythonhosted.org/packages/11/2e/f1ce746f1e8eddee065b0ab55bb57f00c493c9d626b6d0396e0093db9a2e/tqdm-4.27.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/11/2e/f1ce746f1e8eddee065b0ab55bb57f00c493c9d626b6d0396e0093db9a2e/tqdm-4.27.0.tar.gz
+Source99 : https://files.pythonhosted.org/packages/11/2e/f1ce746f1e8eddee065b0ab55bb57f00c493c9d626b6d0396e0093db9a2e/tqdm-4.27.0.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
-Requires: tqdm-bin
-Requires: tqdm-python3
-Requires: tqdm-python
+Requires: tqdm-bin = %{version}-%{release}
+Requires: tqdm-data = %{version}-%{release}
+Requires: tqdm-python = %{version}-%{release}
+Requires: tqdm-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pycodestyle
 
@@ -39,23 +40,24 @@ tqdm
 %package bin
 Summary: bin components for the tqdm package.
 Group: Binaries
+Requires: tqdm-data = %{version}-%{release}
 
 %description bin
 bin components for the tqdm package.
 
 
-%package doc
-Summary: doc components for the tqdm package.
-Group: Documentation
+%package data
+Summary: data components for the tqdm package.
+Group: Data
 
-%description doc
-doc components for the tqdm package.
+%description data
+data components for the tqdm package.
 
 
 %package python
 Summary: python components for the tqdm package.
 Group: Default
-Requires: tqdm-python3
+Requires: tqdm-python3 = %{version}-%{release}
 
 %description python
 python components for the tqdm package.
@@ -71,21 +73,21 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.26.0
+%setup -q -n tqdm-4.27.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536710326
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1539663369
+python3 setup.py build
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/tqdm
-cp LICENCE %{buildroot}/usr/share/doc/tqdm/LICENCE
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/tqdm
+cp LICENCE %{buildroot}/usr/share/package-licenses/tqdm/LICENCE
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -98,9 +100,9 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 /usr/bin/tqdm
 
-%files doc
-%defattr(0644,root,root,0755)
-%doc /usr/share/doc/tqdm/*
+%files data
+%defattr(-,root,root,-)
+/usr/share/package-licenses/tqdm/LICENCE
 
 %files python
 %defattr(-,root,root,-)
