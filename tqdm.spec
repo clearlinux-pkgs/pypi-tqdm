@@ -5,16 +5,16 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.27.0
-Release  : 37
-URL      : https://files.pythonhosted.org/packages/11/2e/f1ce746f1e8eddee065b0ab55bb57f00c493c9d626b6d0396e0093db9a2e/tqdm-4.27.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/11/2e/f1ce746f1e8eddee065b0ab55bb57f00c493c9d626b6d0396e0093db9a2e/tqdm-4.27.0.tar.gz
-Source99 : https://files.pythonhosted.org/packages/11/2e/f1ce746f1e8eddee065b0ab55bb57f00c493c9d626b6d0396e0093db9a2e/tqdm-4.27.0.tar.gz.asc
+Version  : 4.28.1
+Release  : 38
+URL      : https://files.pythonhosted.org/packages/b0/9b/0b2f9dd0e42da42e17c79883021b21cda31dd3216aa2538205ccdd10cc7a/tqdm-4.28.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/b0/9b/0b2f9dd0e42da42e17c79883021b21cda31dd3216aa2538205ccdd10cc7a/tqdm-4.28.1.tar.gz
+Source99 : https://files.pythonhosted.org/packages/b0/9b/0b2f9dd0e42da42e17c79883021b21cda31dd3216aa2538205ccdd10cc7a/tqdm-4.28.1.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
 Requires: tqdm-bin = %{version}-%{release}
-Requires: tqdm-data = %{version}-%{release}
+Requires: tqdm-license = %{version}-%{release}
 Requires: tqdm-python = %{version}-%{release}
 Requires: tqdm-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -40,18 +40,18 @@ tqdm
 %package bin
 Summary: bin components for the tqdm package.
 Group: Binaries
-Requires: tqdm-data = %{version}-%{release}
+Requires: tqdm-license = %{version}-%{release}
 
 %description bin
 bin components for the tqdm package.
 
 
-%package data
-Summary: data components for the tqdm package.
-Group: Data
+%package license
+Summary: license components for the tqdm package.
+Group: Default
 
-%description data
-data components for the tqdm package.
+%description license
+license components for the tqdm package.
 
 
 %package python
@@ -73,14 +73,14 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.27.0
+%setup -q -n tqdm-4.28.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539663369
+export SOURCE_DATE_EPOCH=1540151548
 python3 setup.py build
 
 %install
@@ -94,14 +94,13 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-/usr/man/man1/tqdm.1
 
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/tqdm
 
-%files data
-%defattr(-,root,root,-)
+%files license
+%defattr(0644,root,root,0755)
 /usr/share/package-licenses/tqdm/LICENCE
 
 %files python
