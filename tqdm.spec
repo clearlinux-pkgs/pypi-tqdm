@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.29.0
-Release  : 40
-URL      : https://files.pythonhosted.org/packages/f3/75/1072640a8ef9eb6cd338215800f0f3c6eb8150c0733aec47b57363d356d1/tqdm-4.29.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/f3/75/1072640a8ef9eb6cd338215800f0f3c6eb8150c0733aec47b57363d356d1/tqdm-4.29.0.tar.gz
-Source99 : https://files.pythonhosted.org/packages/f3/75/1072640a8ef9eb6cd338215800f0f3c6eb8150c0733aec47b57363d356d1/tqdm-4.29.0.tar.gz.asc
+Version  : 4.29.1
+Release  : 41
+URL      : https://files.pythonhosted.org/packages/88/fa/606f84272fcfee9b474c6e8366be8fb8da76b38f019a0a65d7ccb8f6cd2b/tqdm-4.29.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/88/fa/606f84272fcfee9b474c6e8366be8fb8da76b38f019a0a65d7ccb8f6cd2b/tqdm-4.29.1.tar.gz
+Source99 : https://files.pythonhosted.org/packages/88/fa/606f84272fcfee9b474c6e8366be8fb8da76b38f019a0a65d7ccb8f6cd2b/tqdm-4.29.1.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
@@ -21,11 +21,21 @@ BuildRequires : buildreq-distutils3
 BuildRequires : pycodestyle
 
 %description
-|Logo|
 tqdm
-====
-|PyPI-Status| |PyPI-Versions| |Conda-Forge-Status|
-|Build-Status| |Coverage-Status| |Branch-Coverage-Status| |Codacy-Grade|
+        ====
+        
+        |PyPI-Status| |PyPI-Versions| |Conda-Forge-Status|
+        
+        |Build-Status| |Coverage-Status| |Branch-Coverage-Status| |Codacy-Grade|
+        
+        |DOI-URI| |LICENCE| |OpenHub-Status|
+        
+        
+        ``tqdm`` means "progress" in Arabic (taqadum, ØªÙØ¯ÙÙ)
+        and is an abbreviation for "I love you so much" in Spanish (te quiero demasiado).
+        
+        Instantly make your loops show a smart progress meter - just wrap any
+        iterable with ``tqdm(iterable)``, and you're done!
 
 %package bin
 Summary: bin components for the tqdm package.
@@ -63,18 +73,19 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.29.0
+%setup -q -n tqdm-4.29.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546886297
+export SOURCE_DATE_EPOCH=1547249953
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tqdm
 cp LICENCE %{buildroot}/usr/share/package-licenses/tqdm/LICENCE
