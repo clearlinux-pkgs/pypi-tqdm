@@ -5,53 +5,33 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.29.1
-Release  : 41
-URL      : https://files.pythonhosted.org/packages/88/fa/606f84272fcfee9b474c6e8366be8fb8da76b38f019a0a65d7ccb8f6cd2b/tqdm-4.29.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/88/fa/606f84272fcfee9b474c6e8366be8fb8da76b38f019a0a65d7ccb8f6cd2b/tqdm-4.29.1.tar.gz
-Source99 : https://files.pythonhosted.org/packages/88/fa/606f84272fcfee9b474c6e8366be8fb8da76b38f019a0a65d7ccb8f6cd2b/tqdm-4.29.1.tar.gz.asc
+Version  : 4.30.0
+Release  : 42
+URL      : https://files.pythonhosted.org/packages/df/85/1b4a823ee751ae69d028f2b65f5127b03218dfab3289b6d720578fb724f2/tqdm-4.30.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/df/85/1b4a823ee751ae69d028f2b65f5127b03218dfab3289b6d720578fb724f2/tqdm-4.30.0.tar.gz
+Source99 : https://files.pythonhosted.org/packages/df/85/1b4a823ee751ae69d028f2b65f5127b03218dfab3289b6d720578fb724f2/tqdm-4.30.0.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
 Requires: tqdm-bin = %{version}-%{release}
-Requires: tqdm-license = %{version}-%{release}
 Requires: tqdm-python = %{version}-%{release}
 Requires: tqdm-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pycodestyle
 
 %description
+|Logo|
 tqdm
-        ====
-        
-        |PyPI-Status| |PyPI-Versions| |Conda-Forge-Status|
-        
-        |Build-Status| |Coverage-Status| |Branch-Coverage-Status| |Codacy-Grade|
-        
-        |DOI-URI| |LICENCE| |OpenHub-Status|
-        
-        
-        ``tqdm`` means "progress" in Arabic (taqadum, ØªÙØ¯ÙÙ)
-        and is an abbreviation for "I love you so much" in Spanish (te quiero demasiado).
-        
-        Instantly make your loops show a smart progress meter - just wrap any
-        iterable with ``tqdm(iterable)``, and you're done!
+====
+|PyPI-Versions| |PyPI-Status| |Conda-Forge-Status|
+|Build-Status| |Coverage-Status| |Branch-Coverage-Status| |Codacy-Grade| |Libraries-Rank| |PyPI-Downloads|
 
 %package bin
 Summary: bin components for the tqdm package.
 Group: Binaries
-Requires: tqdm-license = %{version}-%{release}
 
 %description bin
 bin components for the tqdm package.
-
-
-%package license
-Summary: license components for the tqdm package.
-Group: Default
-
-%description license
-license components for the tqdm package.
 
 
 %package python
@@ -73,22 +53,19 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.29.1
+%setup -q -n tqdm-4.30.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547249953
+export SOURCE_DATE_EPOCH=1548542628
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install
-export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/tqdm
-cp LICENCE %{buildroot}/usr/share/package-licenses/tqdm/LICENCE
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -100,10 +77,6 @@ echo ----[ mark ]----
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/tqdm
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/tqdm/LICENCE
 
 %files python
 %defattr(-,root,root,-)
