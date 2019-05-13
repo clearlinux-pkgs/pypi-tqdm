@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.31.1
-Release  : 45
-URL      : https://files.pythonhosted.org/packages/80/9b/f3036a9a11c250eb51d38acf94d1d7c33a0d4da8a8931bfdf15e12d505b1/tqdm-4.31.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/80/9b/f3036a9a11c250eb51d38acf94d1d7c33a0d4da8a8931bfdf15e12d505b1/tqdm-4.31.1.tar.gz
-Source99 : https://files.pythonhosted.org/packages/80/9b/f3036a9a11c250eb51d38acf94d1d7c33a0d4da8a8931bfdf15e12d505b1/tqdm-4.31.1.tar.gz.asc
+Version  : 4.32.0
+Release  : 46
+URL      : https://files.pythonhosted.org/packages/e4/7f/fc2d83e8f1cc657e2c06e0f4b7f1e608791843d5e40725561aead5ec4a50/tqdm-4.32.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/e4/7f/fc2d83e8f1cc657e2c06e0f4b7f1e608791843d5e40725561aead5ec4a50/tqdm-4.32.0.tar.gz
+Source99 : https://files.pythonhosted.org/packages/e4/7f/fc2d83e8f1cc657e2c06e0f4b7f1e608791843d5e40725561aead5ec4a50/tqdm-4.32.0.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
@@ -24,8 +24,7 @@ BuildRequires : pycodestyle
 |Logo|
 tqdm
 ====
-|PyPI-Versions| |PyPI-Status| |Conda-Forge-Status|
-|Build-Status| |Coverage-Status| |Branch-Coverage-Status| |Codacy-Grade| |Libraries-Rank| |PyPI-Downloads|
+|PyPI-Versions| |PyPI-Status| |Conda-Forge-Status| |Docker| |Snapcraft|
 
 %package bin
 Summary: bin components for the tqdm package.
@@ -63,18 +62,26 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.31.1
+%setup -q -n tqdm-4.32.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549836301
+export SOURCE_DATE_EPOCH=1557779153
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tqdm
 cp LICENCE %{buildroot}/usr/share/package-licenses/tqdm/LICENCE
