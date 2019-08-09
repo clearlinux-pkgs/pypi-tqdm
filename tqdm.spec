@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.32.2
-Release  : 49
-URL      : https://files.pythonhosted.org/packages/d0/0a/50a145091ce0c02db89d0342a59327c1ddeee206ef2991f09158d4e52406/tqdm-4.32.2.tar.gz
-Source0  : https://files.pythonhosted.org/packages/d0/0a/50a145091ce0c02db89d0342a59327c1ddeee206ef2991f09158d4e52406/tqdm-4.32.2.tar.gz
-Source99 : https://files.pythonhosted.org/packages/d0/0a/50a145091ce0c02db89d0342a59327c1ddeee206ef2991f09158d4e52406/tqdm-4.32.2.tar.gz.asc
+Version  : 4.33.0
+Release  : 50
+URL      : https://files.pythonhosted.org/packages/2a/ff/7879a4f6853cc7f4672a12277f92e059d9993d37501d5e7f0729d94abe64/tqdm-4.33.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/2a/ff/7879a4f6853cc7f4672a12277f92e059d9993d37501d5e7f0729d94abe64/tqdm-4.33.0.tar.gz
+Source1 : https://files.pythonhosted.org/packages/2a/ff/7879a4f6853cc7f4672a12277f92e059d9993d37501d5e7f0729d94abe64/tqdm-4.33.0.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
@@ -62,14 +62,15 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.32.2
+%setup -q -n tqdm-4.33.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560896368
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1565323676
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
