@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.36.1
-Release  : 53
-URL      : https://files.pythonhosted.org/packages/80/b3/6ca4806441b730782fc4613c6aa2070412295c5521f33ae151988e448929/tqdm-4.36.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/80/b3/6ca4806441b730782fc4613c6aa2070412295c5521f33ae151988e448929/tqdm-4.36.1.tar.gz
-Source1 : https://files.pythonhosted.org/packages/80/b3/6ca4806441b730782fc4613c6aa2070412295c5521f33ae151988e448929/tqdm-4.36.1.tar.gz.asc
+Version  : 4.37.0
+Release  : 54
+URL      : https://files.pythonhosted.org/packages/cc/7b/5878d4e1b01a2eb802f78ea277f2385072681cabefc8fb4fbdee28dd1869/tqdm-4.37.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/cc/7b/5878d4e1b01a2eb802f78ea277f2385072681cabefc8fb4fbdee28dd1869/tqdm-4.37.0.tar.gz
+Source1 : https://files.pythonhosted.org/packages/cc/7b/5878d4e1b01a2eb802f78ea277f2385072681cabefc8fb4fbdee28dd1869/tqdm-4.37.0.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
@@ -19,6 +19,7 @@ Requires: tqdm-python = %{version}-%{release}
 Requires: tqdm-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pycodestyle
+BuildRequires : util-linux
 
 %description
 |Logo|
@@ -62,14 +63,14 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.36.1
+%setup -q -n tqdm-4.37.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568914273
+export SOURCE_DATE_EPOCH=1572554954
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -86,7 +87,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tqdm
-cp LICENCE %{buildroot}/usr/share/package-licenses/tqdm/LICENCE
+cp %{_builddir}/tqdm-4.37.0/LICENCE %{buildroot}/usr/share/package-licenses/tqdm/b16b865329df882d3206de7f6f404bead8baf4c6
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -101,7 +102,7 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/tqdm/LICENCE
+/usr/share/package-licenses/tqdm/b16b865329df882d3206de7f6f404bead8baf4c6
 
 %files python
 %defattr(-,root,root,-)
