@@ -1,5 +1,5 @@
 PKG_NAME := tqdm
-URL = https://files.pythonhosted.org/packages/a0/77/ee3aad4ee074d519597c16149ddebc7587ead2e5b609b8d765a860989c6a/tqdm-4.39.0.tar.gz
+URL = https://files.pythonhosted.org/packages/09/ba/b3cfc49af38fae9464e8bbd9950d592c177ef264346cdb74cf4d492ec7d9/tqdm-4.40.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
