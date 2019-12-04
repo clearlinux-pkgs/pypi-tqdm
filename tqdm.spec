@@ -6,7 +6,7 @@
 #
 Name     : tqdm
 Version  : 4.40.0
-Release  : 57
+Release  : 58
 URL      : https://files.pythonhosted.org/packages/09/ba/b3cfc49af38fae9464e8bbd9950d592c177ef264346cdb74cf4d492ec7d9/tqdm-4.40.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/09/ba/b3cfc49af38fae9464e8bbd9950d592c177ef264346cdb74cf4d492ec7d9/tqdm-4.40.0.tar.gz
 Source1 : https://files.pythonhosted.org/packages/09/ba/b3cfc49af38fae9464e8bbd9950d592c177ef264346cdb74cf4d492ec7d9/tqdm-4.40.0.tar.gz.asc
