@@ -5,16 +5,15 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.42.1
-Release  : 65
-URL      : https://files.pythonhosted.org/packages/f7/83/9dc2296d40020ba54cbc711160577157d7aa3c2bbdcf6b245c96a7ba6f67/tqdm-4.42.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/f7/83/9dc2296d40020ba54cbc711160577157d7aa3c2bbdcf6b245c96a7ba6f67/tqdm-4.42.1.tar.gz
-Source1  : https://files.pythonhosted.org/packages/f7/83/9dc2296d40020ba54cbc711160577157d7aa3c2bbdcf6b245c96a7ba6f67/tqdm-4.42.1.tar.gz.asc
+Version  : 4.43.0
+Release  : 66
+URL      : https://files.pythonhosted.org/packages/7a/cf/625e53bb8c6ad88302192c7aa50d45cdfb2b0fe97892869ec3dd9309f67f/tqdm-4.43.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/7a/cf/625e53bb8c6ad88302192c7aa50d45cdfb2b0fe97892869ec3dd9309f67f/tqdm-4.43.0.tar.gz
+Source1  : https://files.pythonhosted.org/packages/7a/cf/625e53bb8c6ad88302192c7aa50d45cdfb2b0fe97892869ec3dd9309f67f/tqdm-4.43.0.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
 Requires: tqdm-bin = %{version}-%{release}
-Requires: tqdm-license = %{version}-%{release}
 Requires: tqdm-python = %{version}-%{release}
 Requires: tqdm-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -29,18 +28,9 @@ tqdm
 %package bin
 Summary: bin components for the tqdm package.
 Group: Binaries
-Requires: tqdm-license = %{version}-%{release}
 
 %description bin
 bin components for the tqdm package.
-
-
-%package license
-Summary: license components for the tqdm package.
-Group: Default
-
-%description license
-license components for the tqdm package.
 
 
 %package python
@@ -62,15 +52,15 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.42.1
-cd %{_builddir}/tqdm-4.42.1
+%setup -q -n tqdm-4.43.0
+cd %{_builddir}/tqdm-4.43.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581054533
+export SOURCE_DATE_EPOCH=1582143966
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -86,8 +76,6 @@ python3 setup.py build
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/tqdm
-cp %{_builddir}/tqdm-4.42.1/LICENCE %{buildroot}/usr/share/package-licenses/tqdm/b16b865329df882d3206de7f6f404bead8baf4c6
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -99,10 +87,6 @@ echo ----[ mark ]----
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/tqdm
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/tqdm/b16b865329df882d3206de7f6f404bead8baf4c6
 
 %files python
 %defattr(-,root,root,-)
