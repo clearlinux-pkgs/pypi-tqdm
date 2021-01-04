@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x986B408043AE090D (tqdm@caspersci.uk.to)
 #
 Name     : tqdm
-Version  : 4.55.0
-Release  : 88
-URL      : https://files.pythonhosted.org/packages/de/ea/171518e4f9aacbfd71ca969251f3b1508b00b35562cd5fe8fd47647f6253/tqdm-4.55.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/de/ea/171518e4f9aacbfd71ca969251f3b1508b00b35562cd5fe8fd47647f6253/tqdm-4.55.0.tar.gz
-Source1  : https://files.pythonhosted.org/packages/de/ea/171518e4f9aacbfd71ca969251f3b1508b00b35562cd5fe8fd47647f6253/tqdm-4.55.0.tar.gz.asc
+Version  : 4.55.1
+Release  : 89
+URL      : https://files.pythonhosted.org/packages/9c/97/6627aaf69c42a41d0d22a54ad2bf420290e07da82448823dcd6851de427e/tqdm-4.55.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/9c/97/6627aaf69c42a41d0d22a54ad2bf420290e07da82448823dcd6851de427e/tqdm-4.55.1.tar.gz
+Source1  : https://files.pythonhosted.org/packages/9c/97/6627aaf69c42a41d0d22a54ad2bf420290e07da82448823dcd6851de427e/tqdm-4.55.1.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
@@ -76,15 +76,15 @@ python3 components for the tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.55.0
-cd %{_builddir}/tqdm-4.55.0
+%setup -q -n tqdm-4.55.1
+cd %{_builddir}/tqdm-4.55.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1609284656
+export SOURCE_DATE_EPOCH=1609790217
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -100,7 +100,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tqdm
-cp %{_builddir}/tqdm-4.55.0/LICENCE %{buildroot}/usr/share/package-licenses/tqdm/db1e38a8e85ca5af92d182028bced0a1edc37e10
+cp %{_builddir}/tqdm-4.55.1/LICENCE %{buildroot}/usr/share/package-licenses/tqdm/db1e38a8e85ca5af92d182028bced0a1edc37e10
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
