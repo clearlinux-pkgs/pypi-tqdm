@@ -4,7 +4,7 @@
 #
 Name     : tqdm
 Version  : 4.61.1
-Release  : 102
+Release  : 103
 URL      : https://files.pythonhosted.org/packages/f2/9c/99aae7670351c694c60c72e3cc834b7eab396f738b391bd0bdfc5101a663/tqdm-4.61.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/f2/9c/99aae7670351c694c60c72e3cc834b7eab396f738b391bd0bdfc5101a663/tqdm-4.61.1.tar.gz
 Summary  : Fast, Extensible Progress Meter
