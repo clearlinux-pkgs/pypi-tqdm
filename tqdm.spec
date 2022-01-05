@@ -4,19 +4,22 @@
 #
 Name     : tqdm
 Version  : 4.62.3
-Release  : 113
+Release  : 114
 URL      : https://files.pythonhosted.org/packages/e3/c1/b3e42d5b659ca598508e2a9ef315d5eef0a970f874ef9d3b38d4578765bd/tqdm-4.62.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/e3/c1/b3e42d5b659ca598508e2a9ef315d5eef0a970f874ef9d3b38d4578765bd/tqdm-4.62.3.tar.gz
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
 Requires: tqdm-bin = %{version}-%{release}
+Requires: tqdm-license = %{version}-%{release}
 Requires: tqdm-python = %{version}-%{release}
 Requires: tqdm-python3 = %{version}-%{release}
-Requires: colorama
 BuildRequires : buildreq-distutils3
-BuildRequires : colorama
 BuildRequires : pycodestyle
+BuildRequires : pypi(colorama)
+BuildRequires : pypi(setuptools)
+BuildRequires : pypi(setuptools_scm)
+BuildRequires : pypi(wheel)
 
 %description
 |Logo|
@@ -27,9 +30,18 @@ tqdm
 %package bin
 Summary: bin components for the tqdm package.
 Group: Binaries
+Requires: tqdm-license = %{version}-%{release}
 
 %description bin
 bin components for the tqdm package.
+
+
+%package license
+Summary: license components for the tqdm package.
+Group: Default
+
+%description license
+license components for the tqdm package.
 
 
 %package python
@@ -46,6 +58,7 @@ Summary: python3 components for the tqdm package.
 Group: Default
 Requires: python3-core
 Provides: pypi(tqdm)
+Requires: pypi(colorama)
 
 %description python3
 python3 components for the tqdm package.
@@ -60,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1632186345
+export SOURCE_DATE_EPOCH=1641422734
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -75,6 +88,8 @@ python3 setup.py build
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/tqdm
+cp %{_builddir}/tqdm-4.62.3/LICENCE %{buildroot}/usr/share/package-licenses/tqdm/d710b33bdae7b273ee64376f2e7c722e098079e9
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -86,6 +101,10 @@ echo ----[ mark ]----
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/tqdm
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/tqdm/d710b33bdae7b273ee64376f2e7c722e098079e9
 
 %files python
 %defattr(-,root,root,-)
