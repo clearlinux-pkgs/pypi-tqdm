@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xF8878F56397EFC71 (tqdm@cdcl.ml)
 #
 Name     : pypi-tqdm
-Version  : 4.64.0
-Release  : 123
-URL      : https://files.pythonhosted.org/packages/98/2a/838de32e09bd511cf69fe4ae13ffc748ac143449bfc24bb3fd172d53a84f/tqdm-4.64.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/98/2a/838de32e09bd511cf69fe4ae13ffc748ac143449bfc24bb3fd172d53a84f/tqdm-4.64.0.tar.gz
-Source1  : https://files.pythonhosted.org/packages/98/2a/838de32e09bd511cf69fe4ae13ffc748ac143449bfc24bb3fd172d53a84f/tqdm-4.64.0.tar.gz.asc
+Version  : 4.64.1
+Release  : 124
+URL      : https://files.pythonhosted.org/packages/c1/c2/d8a40e5363fb01806870e444fc1d066282743292ff32a9da54af51ce36a2/tqdm-4.64.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/c1/c2/d8a40e5363fb01806870e444fc1d066282743292ff32a9da54af51ce36a2/tqdm-4.64.1.tar.gz
+Source1  : https://files.pythonhosted.org/packages/c1/c2/d8a40e5363fb01806870e444fc1d066282743292ff32a9da54af51ce36a2/tqdm-4.64.1.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
@@ -67,10 +67,10 @@ python3 components for the pypi-tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.64.0
-cd %{_builddir}/tqdm-4.64.0
+%setup -q -n tqdm-4.64.1
+cd %{_builddir}/tqdm-4.64.1
 pushd ..
-cp -a tqdm-4.64.0 buildavx2
+cp -a tqdm-4.64.1 buildavx2
 popd
 
 %build
@@ -78,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656367455
+export SOURCE_DATE_EPOCH=1662312260
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -103,7 +103,7 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-tqdm
-cp %{_builddir}/tqdm-4.64.0/LICENCE %{buildroot}/usr/share/package-licenses/pypi-tqdm/d710b33bdae7b273ee64376f2e7c722e098079e9
+cp %{_builddir}/tqdm-%{version}/LICENCE %{buildroot}/usr/share/package-licenses/pypi-tqdm/d710b33bdae7b273ee64376f2e7c722e098079e9 || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
