@@ -5,16 +5,15 @@
 # Source0 file verified with key 0xF8878F56397EFC71 (tqdm@cdcl.ml)
 #
 Name     : pypi-tqdm
-Version  : 4.64.1
-Release  : 127
-URL      : https://files.pythonhosted.org/packages/c1/c2/d8a40e5363fb01806870e444fc1d066282743292ff32a9da54af51ce36a2/tqdm-4.64.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/c1/c2/d8a40e5363fb01806870e444fc1d066282743292ff32a9da54af51ce36a2/tqdm-4.64.1.tar.gz
-Source1  : https://files.pythonhosted.org/packages/c1/c2/d8a40e5363fb01806870e444fc1d066282743292ff32a9da54af51ce36a2/tqdm-4.64.1.tar.gz.asc
+Version  : 4.65.0
+Release  : 128
+URL      : https://files.pythonhosted.org/packages/3d/78/81191f56abb7d3d56963337dbdff6aa4f55805c8afd8bad64b0a34199e9b/tqdm-4.65.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/3d/78/81191f56abb7d3d56963337dbdff6aa4f55805c8afd8bad64b0a34199e9b/tqdm-4.65.0.tar.gz
+Source1  : https://files.pythonhosted.org/packages/3d/78/81191f56abb7d3d56963337dbdff6aa4f55805c8afd8bad64b0a34199e9b/tqdm-4.65.0.tar.gz.asc
 Summary  : Fast, Extensible Progress Meter
 Group    : Development/Tools
 License  : MIT MPL-2.0
 Requires: pypi-tqdm-bin = %{version}-%{release}
-Requires: pypi-tqdm-license = %{version}-%{release}
 Requires: pypi-tqdm-python = %{version}-%{release}
 Requires: pypi-tqdm-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -22,6 +21,9 @@ BuildRequires : pypi(colorama)
 BuildRequires : pypi(setuptools)
 BuildRequires : pypi(setuptools_scm)
 BuildRequires : pypi(wheel)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 |Logo|
@@ -32,18 +34,9 @@ tqdm
 %package bin
 Summary: bin components for the pypi-tqdm package.
 Group: Binaries
-Requires: pypi-tqdm-license = %{version}-%{release}
 
 %description bin
 bin components for the pypi-tqdm package.
-
-
-%package license
-Summary: license components for the pypi-tqdm package.
-Group: Default
-
-%description license
-license components for the pypi-tqdm package.
 
 
 %package python
@@ -67,10 +60,10 @@ python3 components for the pypi-tqdm package.
 
 
 %prep
-%setup -q -n tqdm-4.64.1
-cd %{_builddir}/tqdm-4.64.1
+%setup -q -n tqdm-4.65.0
+cd %{_builddir}/tqdm-4.65.0
 pushd ..
-cp -a tqdm-4.64.1 buildavx2
+cp -a tqdm-4.65.0 buildavx2
 popd
 
 %build
@@ -78,15 +71,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662312260
+export SOURCE_DATE_EPOCH=1677976970
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -102,8 +95,6 @@ popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/pypi-tqdm
-cp %{_builddir}/tqdm-%{version}/LICENCE %{buildroot}/usr/share/package-licenses/pypi-tqdm/d710b33bdae7b273ee64376f2e7c722e098079e9 || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -124,10 +115,6 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/tqdm
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/pypi-tqdm/d710b33bdae7b273ee64376f2e7c722e098079e9
 
 %files python
 %defattr(-,root,root,-)
