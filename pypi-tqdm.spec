@@ -7,7 +7,7 @@
 #
 Name     : pypi-tqdm
 Version  : 4.67.1
-Release  : 139
+Release  : 140
 URL      : https://files.pythonhosted.org/packages/a8/4b/29b4ef32e036bb34e4ab51796dd745cdba7ed47ad142a9f4a1eb8e0c744d/tqdm-4.67.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/a8/4b/29b4ef32e036bb34e4ab51796dd745cdba7ed47ad142a9f4a1eb8e0c744d/tqdm-4.67.1.tar.gz
 Summary  : Fast, Extensible Progress Meter
